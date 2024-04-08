@@ -1,0 +1,21 @@
+﻿@model List<Product>
+
+<h2>Ürün Listesi</h2>
+
+<table>
+    <tr>
+        <th>Ürün Adı</th>
+        <th>Fiyat</th>
+        <th>Stok</th>
+    </tr>
+    @foreach (var product in Model)
+    {
+        <tr>
+            <td>@product.ProductName</td>
+            <td>@product.UnitPrice</td>
+            <td>@product.UnitsInStock</td>
+        </tr>
+    }
+</table>
+
+<a href="@Url.Action("Create", "Product")">Yeni Ürün Ekle</a>
