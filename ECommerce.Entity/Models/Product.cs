@@ -16,7 +16,6 @@ namespace ECommerce.ENTITIES.Models
         public int UnitsInStock { get; set; }
         public string ImagePath { get; set; }
         public int CategoryId { get; set; }
-        //public virtual Collection<ProductCategory> ProductCategories { get; set; }
 
     }
 }

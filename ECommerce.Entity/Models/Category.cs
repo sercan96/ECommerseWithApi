@@ -14,9 +14,6 @@ namespace ECommerce.ENTITIES.Models
         public string CategoryName { get; set; }
         public string Description { get; set; }
 
-        // Relational Properties
-
-        //public virtual Collection<ProductCategory> ProductCategories { get; set; }
 
     }
 }
