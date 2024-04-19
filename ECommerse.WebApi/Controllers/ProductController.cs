@@ -2,15 +2,16 @@
 using ECommerce.ENTITIES.Models;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerse.WebApi.Controllers
 {
-    [ApiController]
-    [Route("Api/[controller]")]
+    [ApiController] // Indicates that it is an API controller.
+    [Route("Api/[controller]")] //A path prefix is defined using the controller name. For example, if a controller name is "ProductsController", this attribute maps the Api/Products path
     public class ProductController : Controller
     {
         Context _db;
-        private readonly ILogger<ProductController> _logger;
+        private readonly ILogger<ProductController> _logger; // debugging and monitoring
         public ProductController(ILogger<ProductController> logger, Context db)
         {
             _logger = logger;
@@ -18,28 +19,49 @@ namespace ECommerse.WebApi.Controllers
         }
 
 
-        [HttpGet("{productId}", Name = "GetProduct")]
-        public Product Get(int productId)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProduct(int? id)
         {
-            _logger.LogInformation("Urun bilgisi cekildi");
-            return _db.Products.FirstOrDefault(x => x.ID == productId);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _db.Products.FirstOrDefaultAsync(i => i.ID == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(product);
         }
 
         [HttpGet("all", Name = "GetAllProducts")]
-        public IEnumerable<Product> GetAll()
+        public async Task<IActionResult> GetProducts()
         {
-            var list = _db.Products.ToList();
-            return list;
+            var p = await _db.Products.ToListAsync();
+            return Ok(p);
         }
 
         [HttpPost(Name = "AddProduct")]
-        public void Add(Product product)
+        public async Task<IActionResult> Add(Product product)
         {
-            //If the product to be added has any category then add it
-            if (product.CategoryId > 0)
+            try
             {
+                if (product == null || product.CategoryId <= 0)
+                {
+                    return BadRequest("Geçersiz ürün bilgisi.");
+                }
+
                 _db.Products.Add(product);
-                _db.SaveChanges();
+                await _db.SaveChangesAsync();
+
+                return Ok("Ürün başarıyla eklendi.");
+            }
+            catch (Exception ex)
+            {
+                // Loglama yapılabilir
+                return StatusCode(500, "Bir hata oluştu.");
             }
         }
 
@@ -56,6 +78,38 @@ namespace ECommerse.WebApi.Controllers
         {
             _logger.LogInformation("Categoriye göre Urun bilgisi cekildi");
             return _db.Products.Where(x => x.CategoryId == categoryId).ToList();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProduct(int id, Product entity)
+        {
+            if (id != entity.ID)
+            {
+                return BadRequest();
+            }
+
+            var product = await _db.Products.FirstOrDefaultAsync(i => i.ID == id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            product.ProductName = entity.ProductName;
+            product.UnitPrice = entity.UnitPrice;
+            product.CategoryId = entity.CategoryId;
+
+            try
+            {
+                await _db.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
+
         }
     }
 }

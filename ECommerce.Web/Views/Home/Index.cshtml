@@ -368,8 +368,9 @@
                     }                      
                 </div>
                 <div class="col-md-9">
-                    <div class="row product-list" id ="productList">
-                 </div>
+                    <div
+                        class="row product-list" id ="productList">
+                    </div>
                 </div>
             </div>
             <!-- page end-->
@@ -392,15 +393,14 @@
 <script type="text/javascript">
     function Products(categoryId)
     {
-
-            $.ajax({
-        type: "POST",
-            url: "/Home/Products",
-        data: { "categoryId": categoryId },
+        $.ajax({ //It allows communication with the server.
+            type: "POST",   // HTTP isteğinin türü
+            url: "/Home/Products", // Sunucuya gönderilecek isteğin adresini belirtir.
+            data: { "categoryId": categoryId }, //  İsteğe eklenecek veriyi belirtir.
         success: function (response) {
-            debugger;
+                debugger; // tarayıcıda hata ayıklama moduna geçilir, gelen yanıt konsola yazdırılır
             console.log(response);
-                var div = document.getElementById("productList");
+            var div = document.getElementById("productList");
             div.innerHTML = response;
         },
         failure: function (response) {
@@ -410,6 +410,12 @@
         }
     });
     }
+
+    /*
+    AJAX isteğiyle sunucudan gelen yanıt, bu belirli <div> elemanının içine yerleştirilir.
+    Yani, sunucudan gelen ürün listesi id="productList" olan bu HTML elemanının içeriğine yerleştirilir
+    ve kullanıcıya gösterilir.
+    */
 
 
 

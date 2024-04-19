@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerse.WebApi", "ECommerse.WebApi\ECommerse.WebApi.csproj", "{F51A3339-9861-4D1F-990D-D7FD7E5296D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerse.WebApi", "ECommerse.WebApi\ECommerse.WebApi.csproj", "{F51A3339-9861-4D1F-990D-D7FD7E5296D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.ENTITIES", "ECommerce.Entity\ECommerce.ENTITIES.csproj", "{3ECDFC7C-69C5-4290-B9A1-E6632F5F49D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.ENTITIES", "ECommerce.Entity\ECommerce.ENTITIES.csproj", "{3ECDFC7C-69C5-4290-B9A1-E6632F5F49D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Web", "ECommerce.Web\ECommerce.Web.csproj", "{E7924AE2-458B-4077-87AD-7ABAFA8018BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Web", "ECommerce.Web\ECommerce.Web.csproj", "{E7924AE2-458B-4077-87AD-7ABAFA8018BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.DAL", "ECommerce.Dal\ECommerce.DAL.csproj", "{1E3569BF-1835-4EDE-94BF-3928CA6B1293}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.DAL", "ECommerce.Dal\ECommerce.DAL.csproj", "{1E3569BF-1835-4EDE-94BF-3928CA6B1293}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.BLL", "ECommerce.Bll\ECommerce.BLL.csproj", "{A26C5AEF-20DC-4416-AAF6-6BF06216F6D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.BLL", "ECommerce.Bll\ECommerce.BLL.csproj", "{A26C5AEF-20DC-4416-AAF6-6BF06216F6D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.CONF", "ECommerce.CONF\ECommerce.CONF.csproj", "{01E475C1-570A-4919-817A-8D1A2ABC2732}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.CONF", "ECommerce.CONF\ECommerce.CONF.csproj", "{01E475C1-570A-4919-817A-8D1A2ABC2732}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

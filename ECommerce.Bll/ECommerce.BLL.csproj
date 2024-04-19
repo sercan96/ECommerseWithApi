@@ -11,4 +11,10 @@
     <ProjectReference Include="..\ECommerce.Entity\ECommerce.ENTITIES.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Managers\Abstracts\" />
+    <Folder Include="Managers\Concretes\" />
+    <Folder Include="ServiceInjection\" />
+  </ItemGroup>
+
 </Project>

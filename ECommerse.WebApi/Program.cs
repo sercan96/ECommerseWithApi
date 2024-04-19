@@ -1,6 +1,3 @@
-using ECommerce.BLL.Managers.Abstracts;
-using ECommerce.BLL.Managers.Concretes;
-using ECommerce.BLL.ServiceInjection;
 using ECommerce.DAL.ContextClasses;
 using Microsoft.EntityFrameworkCore;
 

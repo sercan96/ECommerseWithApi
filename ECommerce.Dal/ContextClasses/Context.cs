@@ -14,7 +14,7 @@ namespace ECommerce.DAL.ContextClasses
     {
         public Context(DbContextOptions<Context> options) : base(options)
         {
-
+           
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

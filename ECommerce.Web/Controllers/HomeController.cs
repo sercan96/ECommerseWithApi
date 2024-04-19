@@ -17,18 +17,22 @@ namespace ECommerce.Web.Controllers
 
         public IActionResult Index()
         {
-            CategoryService categoryService = new CategoryService();
+            CategoryService categoryService = new CategoryService("http://localhost:5251");
             var categories = categoryService.GetAll();
             return View(categories);
         }
 
         public IActionResult Products(int categoryId)
         {
-            ProductService productService = new ProductService();
+            ProductService productService = new ProductService("http://localhost:5251");
             var products = productService.GetAllCategoryProduct(categoryId);
             return PartialView("_Products",products);
         }
 
+        /*
+         * Partial View:
+         * Kýsmi görünümler, kod tekrarýný azaltýr, bakýmý kolaylaþtýrýr ve yeniden kullanýlabilirliði artýrýr. Bu nedenle, belirli bir bölgenin ayrý bir bileþen olarak tanýmlanmasý gerektiðinde, Partial View'lerin kullanýlmasý yaygýn bir uygulamadýr.
+        */
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

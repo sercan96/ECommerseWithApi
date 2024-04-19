@@ -21,4 +21,9 @@
     <ProjectReference Include="..\ECommerce.Entity\ECommerce.ENTITIES.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositories\Abstracts\" />
+    <Folder Include="Repositories\Concretes\" />
+  </ItemGroup>
+
 </Project>

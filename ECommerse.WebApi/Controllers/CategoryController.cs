@@ -1,15 +1,14 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using ECommerce.BLL.Managers.Concretes;
 using ECommerce.ENTITIES.Models;
-using ECommerce.BLL.Managers.Abstracts;
 using ECommerce.DAL.ContextClasses;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerse.WebApi.Controllers
 {
     [ApiController]
     [Route("Api/[controller]")]
-    public class CategoryController : ControllerBase
+    public class CategoryController : ControllerBase // We dont get View
     {
         Context _db;
         private readonly ILogger<CategoryController> _logger;
@@ -21,9 +20,22 @@ namespace ECommerse.WebApi.Controllers
 
 
         [HttpGet("{categoryId}", Name = "GetCategory")]
-        public Category Get(int categoryId)
+        public async Task<IActionResult> Get(int? categoryId) // async => return void,Task,Task<T> 
         {
-            return _db.Categories.FirstOrDefault(x => x.ID == categoryId);
+            if (categoryId == null)
+            {
+                return NotFound();
+            }
+
+            // Works like synchronous, waits for the operation to be completed
+            var category =  await _db.Categories.FirstOrDefaultAsync(x => x.ID == categoryId);
+ 
+            if (category == null)
+            {
+                return NotFound(); // 404
+            }
+
+            return Ok(category);
         }
 
          [HttpGet("all", Name = "GetAllCategories")]
@@ -34,10 +46,20 @@ namespace ECommerse.WebApi.Controllers
         }
 
         [HttpPost(Name = "AddCategory")]
-        public void Add(Category category)
+        public async Task<IActionResult> Add(Category category)
         {
-            _db.Categories.Add(category);
-            _db.SaveChanges();
+            try
+            {   
+               _db.Categories.Add(category);
+                await _db.SaveChangesAsync();
+
+                return Ok("The category has been added successfully.");
+            }
+            catch (Exception ex)
+            {
+                // Log
+                return StatusCode(500, "Something went wrong.");
+            }
         }
 
         [HttpDelete(Name = "DeleteCategory")]
