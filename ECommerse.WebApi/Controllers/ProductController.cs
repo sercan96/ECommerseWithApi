@@ -50,18 +50,18 @@ namespace ECommerse.WebApi.Controllers
             {
                 if (product == null || product.CategoryId <= 0)
                 {
-                    return BadRequest("Geçersiz ürün bilgisi.");
+                    return BadRequest("Invalid product information.");
                 }
 
                 _db.Products.Add(product);
                 await _db.SaveChangesAsync();
 
-                return Ok("Ürün başarıyla eklendi.");
+                return Ok("The product has been added successfully.");
             }
             catch (Exception ex)
             {
                 // Loglama yapılabilir
-                return StatusCode(500, "Bir hata oluştu.");
+                return StatusCode(500, "Something went wrong.");
             }
         }
 
@@ -76,7 +76,7 @@ namespace ECommerse.WebApi.Controllers
         [HttpGet("category/{categoryId}", Name = "GetProductCategory")]
         public IEnumerable<Product> GetProductCategory(int categoryId)
         {
-            _logger.LogInformation("Categoriye göre Urun bilgisi cekildi");
+            _logger.LogInformation("Product information was retrieved according to category");
             return _db.Products.Where(x => x.CategoryId == categoryId).ToList();
         }
 
